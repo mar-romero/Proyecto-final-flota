@@ -42,10 +42,10 @@ with open('flota.csv') as fo:
         hora_cit_seg = hora_cit[0]*3600 + hora_cit[1]*60 + hora_cit[2]
         if chofer == idcho:
             hora_pasar = (hora_cit_seg-900)
-            if hora_seg <= hora_pasar:
+            if hora_seg >= hora_pasar:
                 print("Puede pasar, Buena Jornada")
                 hora_fin = time.strftime('%H:%M:%S', time.gmtime(hora_seg))
-               
+                #no puedo grabar en la columna inicio de carga
                 writer.writerow({'inicio carga': hora_fin})
             else:
                 print("No puede ingresar")
