@@ -14,45 +14,52 @@ __author__ = "Romero Marcelo Ezequiel"
 __email__ = "romero-ar@hotmail.com"
 __version__ = "1.1"
 
+
 import csv
 import datetime
 import time
-
+lis_cho = []
 csvfile = open('flota.csv', 'r+')
-import csv
-import datetime
-import time
-
 with open('flota.csv') as fo:
+    data = list(csv.DictReader(fo))
+    no = open('mer.txt', "r+")
     while True:
         try:
-            data = list(csv.DictReader(fo))
-            hoy = datetime.datetime.today() 
+            hoy = datetime.datetime.today()
             hora = ('{:%H:%M:%S}'.format(hoy))
-            hora = hora.split(":")
+            hora_sep = hora.split(":")
             for u in range(3):
-                hora[u]= int(hora[u])
-            hora_seg = hora[0]*3600 + hora[1]*60 + hora[2]
+                hora_sep[u] = int(hora_sep[u])
+            hora_seg = hora_sep[0]*3600 + hora_sep[1]*60 + hora_sep[2]
+            hora_seg = int(hora_seg)
             idcho = int(input('Ingrese ID del chofer:\n'))
+            no_existe = True
             for i in range(len(data)):
                 cho = data[i]
                 chofer = int(cho.get('ID CHO'))
-                hora_cit = str(cho.get('HORA DE CITACION'))
-                hora_cit = hora_cit.split(":")
-                for u in range(3):
-                    hora_cit[u]= int(hora_cit[u])
-                hora_cit_seg = hora_cit[0]*3600 + hora_cit[1]*60 + hora_cit[2]
                 if chofer == idcho:
-                    hora_pasar = (hora_cit_seg-900)
-                    if hora_seg >= hora_pasar:
-                        print("Puede pasar, Buena Jornada")
-                        hora_fin = time.strftime('%H:%M:%S', time.gmtime(hora_seg))
-                        #no puedo grabar en la columna inicio de cargaz
-                        writer.writerow({'inicio carga': hora_fin})
+                    no_existe = False
+                    hora_cit = str(cho.get('HORA DE CITACION'))
+                    nom_cho = str(cho.get('CHOFER'))
+                    hora_cit_sep = hora_cit.split(":")
+                    lis_cho.append(chofer)
+                    for u in range(3):
+                        hora_cit_sep[u] = int(hora_cit_sep[u])
+                    hora_cit_seg = hora_cit_sep[0]*3600 + hora_cit_sep[1]*60 + hora_cit_sep[2]
+                    hora_cit_seg = int(hora_cit_seg)
+                    hora_pasa = (hora_cit_seg-900)
+                    if hora_seg >= hora_pasa:
+                        print("Puede pasar, buena jornada")
+                        idcho_tx = str(idcho)
+                        no.write(nom_cho + "," + idcho_tx + "," +hora_cit + "," + hora + "," + " \n")
+                        no.flush()
+                        break
                     else:
                         print("No puede ingresar")
-            print('No ingreso ID correcto')
+                        break
+            if no_existe:
+                print("El ID no esta en la lista")
         except ValueError:
             print('No ingreso ID correcto')
-        
 csvfile.close()
+no.close()

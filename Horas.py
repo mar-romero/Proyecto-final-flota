@@ -15,4 +15,3 @@ def horas():
     print(hora_seg_2)
     print(hora_fin)
     print(hora_fin_2)
-
