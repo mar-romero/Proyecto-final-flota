@@ -16,7 +16,7 @@ El programa a utilizar seria visual studio code y el lenguaje de programacion Py
 * Ingreso:
 
    * Se ingresa opcion 1 en el menu y se le pide el ID al chofer.
-   * En ese modulo comopara la hora que fue citado el vehiculo con la hora en la que se presenta a la planta y solo puede ingresar si se presenta con 15 min de anticipacion, si
+   * En ese modulo compara la hora que fue citado el vehiculo con la hora en la que se presenta a la planta y solo puede ingresar si se presenta con 15 min de anticipacion, si
    es asi se graba en un archivo txt la hora de citacion y la hora de llegada a la planta, si llego antes de los 15 min permitidos para poder pasar a la planta no puede ingresar 
    y no se graba la hora que llego a la planta. Esto se logra gracias al ID con el que se identifica al chofer.
   
