@@ -40,3 +40,10 @@ El funcionamiento del "rendicion.py" es correcto, en general los comentarios son
 - Nombre del archivo en minúscula.
 - Módulos de import deben ir al comienzo del archivo y no dentro de las funciones.
 - El uso del archivo CSV podría solo ser "r".
+
+
+#### Comentarios
+- Ya cambie todo lo mencionado e elimine el modulo horas.
+- Un error que me di cuenta es que se volvia a reinscribir una vez ingresado a cada modulo (el txt creado solo quedaba grabado un chofer,el ultimo) no encontre otra solucion que poner todo el codigo en el mismo archivo y cerrar elos txt cuando se ingrese
+la opcion 4.
+- Se modifico el archivo readme.md
